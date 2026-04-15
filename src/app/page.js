@@ -41,12 +41,12 @@ const C = {
   textMuted: "#80868B",
   border: "#DADCE0",
   borderLight: "#F1F3F4",
-  accent: "#1A73E8",         /* Google Blue — primary buttons */
+  accent: "#1A73E8",
   accentHover: "#1558D6",
-  accentText: "#FFFFFF",     /* white text on blue buttons */
-  accentHighlight: "#1E8E3E", /* Google Green — text highlights & checks */
-  accentLabel: "#1A73E8",    /* Google Blue — section labels */
-  accentBg: "#E8F0FE",       /* Google Blue light bg */
+  accentText: "#FFFFFF",
+  accentHighlight: "#1E8E3E",
+  accentLabel: "#1A73E8",
+  accentBg: "#E8F0FE",
   accentBorder: "#D2E3FC",
   amber: "#EA8600",
   amberBg: "#FEF7E0",
@@ -56,13 +56,18 @@ const C = {
   blue: "#1A73E8",
 };
 
-/* Material Design shadows */
 const shadow = "0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15)";
 const shadowLg = "0 4px 6px -1px rgba(60,64,67,0.3), 0 2px 4px -1px rgba(60,64,67,0.15)";
 const wrap = { maxWidth: 1200, margin: "0 auto", padding: "0 24px", width: "100%" };
-
-/* Pill radius for primary CTAs */
 const pillRadius = 100;
+
+/* ═══ SVG PAUSE LOGO (replaces emoji to avoid yellow rendering on mobile) ═══ */
+const PauseLogo = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <rect x="5" y="3" width="5" height="18" rx="1" />
+    <rect x="14" y="3" width="5" height="18" rx="1" />
+  </svg>
+);
 
 /* ═══ ICON COMPONENTS ═══ */
 const I = {
@@ -150,8 +155,8 @@ function Nav() {
           <div style={{
             width: 34, height: 34, borderRadius: 9,
             background: C.accent, display: "flex", alignItems: "center", justifyContent: "center",
-            color: C.accentText, fontWeight: 900, fontSize: 15,
-          }}>{"\u23F8"}</div>
+            color: C.accentText,
+          }}><PauseLogo size={16} /></div>
           <span style={{ fontWeight: 700, fontSize: 19, color: C.text, letterSpacing: "-0.03em" }}>
             Pause<span style={{ color: C.accentHighlight }}>Pay</span>
           </span>
@@ -420,7 +425,17 @@ function HowItWorks() {
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0, minWidth: 640 }}>
               <Box emoji={"\uD83D\uDCF1"} label="Your App" sub="SDK / API" />
               <Arrow />
-              <Box emoji={"\u23F8"} label="PausePay" sub="Middleware" accent />
+              <div style={{
+                textAlign: "center", padding: "20px 16px", minWidth: 120,
+                background: C.accentBg, border: `2px solid ${C.accent}`,
+                borderRadius: 16, boxShadow: shadowLg,
+              }}>
+                <div style={{ width: 40, height: 40, borderRadius: 10, background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 8px", color: C.accentText }}>
+                  <PauseLogo size={18} />
+                </div>
+                <p style={{ fontWeight: 700, fontSize: 13, color: C.accent, margin: "0 0 2px" }}>PausePay</p>
+                <p style={{ fontSize: 11, color: C.textMuted, margin: 0 }}>Middleware</p>
+              </div>
               <Arrow />
               <Box emoji={"\uD83D\uDCB3"} label="Razorpay" sub="Gateway" />
               <Arrow />
@@ -590,7 +605,9 @@ function Footer() {
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 48 }}>
           <div style={{ maxWidth: 260 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 14 }}>
-              <div style={{ width: 28, height: 28, borderRadius: 7, background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", color: C.accentText, fontWeight: 900, fontSize: 12 }}>{"\u23F8"}</div>
+              <div style={{ width: 28, height: 28, borderRadius: 7, background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", color: C.accentText }}>
+                <PauseLogo size={12} />
+              </div>
               <span style={{ fontWeight: 700, fontSize: 16, color: C.text }}>Pause<span style={{ color: C.accentHighlight }}>Pay</span></span>
             </div>
             <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.6, margin: 0 }}>
