@@ -621,7 +621,7 @@ function Footer() {
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 <a href="#how" style={fLink}>How It Works</a>
                 <a href="#pricing" style={fLink}>Pricing</a>
-                <a href="https://https://github.com/pausepay" style={fLink}>Documentation</a>
+                <a href="https://github.com/pausepay" target="_blank" rel="noopener noreferrer" style={fLink}>Documentation</a>
               </div>
             </div>
             <div>
