@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 const TALLY_URL = "https://tally.so/r/J9JyWX";
 
-/* ═══ ANIMATION HOOKS ═══ */
+/* ═══ HOOKS ═══ */
 function useInView(threshold = 0.1) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -31,37 +31,25 @@ function Reveal({ children, delay = 0 }) {
   );
 }
 
-/* ═══ GOOGLE PAY × MASTERCARD DESIGN TOKENS ═══ */
+/* ═══ DESIGN TOKENS ═══ */
 const C = {
-  bg: "#FFFFFF",
-  bgAlt: "#F8F9FA",
-  bgCard: "#FFFFFF",
-  text: "#202124",
-  textSub: "#5F6368",
-  textMuted: "#80868B",
-  border: "#DADCE0",
-  borderLight: "#F1F3F4",
-  accent: "#1A73E8",
-  accentHover: "#1558D6",
-  accentText: "#FFFFFF",
-  accentHighlight: "#1E8E3E",
-  accentLabel: "#1A73E8",
-  accentBg: "#E8F0FE",
-  accentBorder: "#D2E3FC",
-  amber: "#EA8600",
-  amberBg: "#FEF7E0",
-  amberBorder: "#FCE8B2",
-  red: "#D93025",
-  redBg: "#FCE8E6",
-  blue: "#1A73E8",
+  bg: "#FFFFFF", bgAlt: "#F8F9FA", bgCard: "#FFFFFF",
+  text: "#202124", textSub: "#5F6368", textMuted: "#80868B",
+  border: "#DADCE0", borderLight: "#F1F3F4",
+  accent: "#1A73E8", accentHover: "#1558D6", accentText: "#FFFFFF",
+  accentHighlight: "#1E8E3E", accentLabel: "#1A73E8",
+  accentBg: "#E8F0FE", accentBorder: "#D2E3FC",
+  amber: "#EA8600", amberBg: "#FEF7E0", amberBorder: "#FCE8B2",
+  red: "#D93025", redBg: "#FCE8E6", blue: "#1A73E8",
 };
 
 const shadow = "0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15)";
 const shadowLg = "0 4px 6px -1px rgba(60,64,67,0.3), 0 2px 4px -1px rgba(60,64,67,0.15)";
+const shadowXl = "0 10px 25px -5px rgba(60,64,67,0.2), 0 8px 10px -6px rgba(60,64,67,0.1)";
 const wrap = { maxWidth: 1200, margin: "0 auto", padding: "0 24px", width: "100%" };
 const pillRadius = 100;
 
-/* ═══ SVG PAUSE LOGO (replaces emoji to avoid yellow rendering on mobile) ═══ */
+/* ═══ PAUSE LOGO ═══ */
 const PauseLogo = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
     <rect x="5" y="3" width="5" height="18" rx="1" />
@@ -69,7 +57,7 @@ const PauseLogo = ({ size = 16 }) => (
   </svg>
 );
 
-/* ═══ ICON COMPONENTS ═══ */
+/* ═══ ICONS ═══ */
 const I = {
   pause: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>,
   play: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
@@ -83,9 +71,9 @@ const I = {
   cal: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
   alert: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
   chevron: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
+  sparkle: <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>,
 };
 
-/* ═══ DATA ═══ */
 const PRICING = [
   {
     tier: "Starter", price: "2,999", period: "/mo",
@@ -107,15 +95,10 @@ const PRICING = [
   },
 ];
 
-/* ═══ RBI URGENCY TOP BAR ═══ */
+/* ═══ TOP BAR ═══ */
 function TopBar() {
   return (
-    <div style={{
-      background: C.amberBg,
-      borderBottom: `1px solid ${C.amberBorder}`,
-      padding: "10px 24px",
-      position: "relative", zIndex: 101,
-    }}>
+    <div style={{ background: C.amberBg, borderBottom: `1px solid ${C.amberBorder}`, padding: "10px 24px", position: "relative", zIndex: 101 }}>
       <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap", textAlign: "center" }}>
         <span style={{ color: C.amber, flexShrink: 0 }}>{I.alert}</span>
         <p style={{ fontSize: 13, color: C.text, margin: 0, lineHeight: 1.5 }}>
@@ -150,14 +133,13 @@ function Nav() {
       borderBottom: `1px solid ${scrolled ? C.border : "transparent"}`,
       transition: "all 0.3s ease",
     }}>
-      <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+      <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
         <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <div style={{
-            width: 34, height: 34, borderRadius: 9,
-            background: C.accent, display: "flex", alignItems: "center", justifyContent: "center",
-            color: C.accentText,
-          }}><PauseLogo size={16} /></div>
-          <span style={{ fontWeight: 700, fontSize: 19, color: C.text, letterSpacing: "-0.03em" }}>
+            width: 36, height: 36, borderRadius: 10, background: C.accent,
+            display: "flex", alignItems: "center", justifyContent: "center", color: C.accentText,
+          }}><PauseLogo size={17} /></div>
+          <span style={{ fontWeight: 700, fontSize: 20, color: C.text, letterSpacing: "-0.03em" }}>
             Pause<span style={{ color: C.accentHighlight }}>Pay</span>
           </span>
         </a>
@@ -167,7 +149,7 @@ function Nav() {
             <a key={l.h} href={l.h} style={{ color: C.textSub, textDecoration: "none", fontSize: 14, fontWeight: 500 }}>{l.l}</a>
           ))}
           <a href="#waitlist" style={{
-            padding: "9px 24px", borderRadius: pillRadius, fontWeight: 600, fontSize: 13.5,
+            padding: "10px 24px", borderRadius: pillRadius, fontWeight: 600, fontSize: 13.5,
             background: C.accent, color: C.accentText, textDecoration: "none",
             transition: "background 0.15s",
           }}>Join Waitlist</a>
@@ -201,82 +183,225 @@ function Nav() {
   );
 }
 
-/* ═══ HERO ═══ */
+/* ═══ HERO with VISUAL ═══ */
 function Hero() {
   const [show, setShow] = useState(false);
   useEffect(() => { setShow(true); }, []);
   const f = (d) => ({
     opacity: show ? 1 : 0,
     transform: show ? "translateY(0)" : "translateY(20px)",
-    transition: `opacity 0.6s cubic-bezier(.22,1,.36,1) ${d}s, transform 0.6s cubic-bezier(.22,1,.36,1) ${d}s`,
+    transition: `opacity 0.7s cubic-bezier(.22,1,.36,1) ${d}s, transform 0.7s cubic-bezier(.22,1,.36,1) ${d}s`,
   });
 
   return (
-    <section style={{ background: C.bg, paddingTop: 80, paddingBottom: 100 }}>
-      <div style={wrap}>
-        <div style={{ maxWidth: 720 }}>
-          <div style={f(0.1)}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "6px 14px 6px 8px", borderRadius: 100,
-              background: C.accentBg, border: `1px solid ${C.accentBorder}`,
-              marginBottom: 28,
-            }}>
-              <div style={{ width: 20, height: 20, borderRadius: "50%", background: C.accentHighlight, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span style={{ fontSize: 12.5, fontWeight: 600, color: C.accentLabel, letterSpacing: "0.02em" }}>
-                India{"\u2019"}s first subscription pause infrastructure
-              </span>
-            </div>
-          </div>
+    <section style={{ background: C.bg, paddingTop: 64, paddingBottom: 96, position: "relative", overflow: "hidden" }}>
+      {/* Subtle bg gradient */}
+      <div style={{
+        position: "absolute", top: -200, right: -200, width: 600, height: 600, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(26,115,232,0.04), transparent 70%)", pointerEvents: "none",
+      }} />
+      <div style={{
+        position: "absolute", bottom: -150, left: -150, width: 500, height: 500, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(30,142,62,0.04), transparent 70%)", pointerEvents: "none",
+      }} />
 
-          <div style={f(0.2)}>
-            <h1 style={{
-              fontSize: "clamp(34px, 5vw, 62px)", fontWeight: 800,
-              lineHeight: 1.08, letterSpacing: "-0.035em",
-              color: C.text, margin: "0 0 20px",
-            }}>
-              Stop losing subscribers to a missing{" "}
-              <span style={{ color: C.accentHighlight }}>pause button</span>
-            </h1>
-          </div>
-
-          <div style={f(0.35)}>
-            <p style={{
-              fontSize: "clamp(16px, 1.6vw, 19px)", color: C.textSub,
-              lineHeight: 1.7, maxWidth: 540, margin: "0 0 36px",
-            }}>
-              In India{"\u2019"}s payment stack, subscribers can only <strong style={{ color: C.text }}>pay or cancel</strong>. There{"\u2019"}s no middle ground. PausePay adds the missing pause layer {"\u2014"} keeping mandates alive while billing sleeps.
-            </p>
-          </div>
-
-          <div style={f(0.5)}>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
-              <a href="#waitlist" style={{
-                padding: "14px 32px", borderRadius: pillRadius, fontWeight: 600, fontSize: 15,
-                background: C.accent, color: C.accentText, textDecoration: "none",
+      <div style={{ ...wrap, position: "relative" }}>
+        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+          {/* Left: Text */}
+          <div>
+            <div style={f(0.05)}>
+              <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                boxShadow: shadow,
-                transition: "background 0.15s, transform 0.1s",
+                padding: "6px 14px 6px 8px", borderRadius: 100,
+                background: C.accentBg, border: `1px solid ${C.accentBorder}`, marginBottom: 24,
               }}>
-                Join the Waitlist {I.arrow}
-              </a>
-              <a href="#how" style={{
-                padding: "14px 32px", borderRadius: pillRadius, fontWeight: 600, fontSize: 15,
-                background: C.bgCard, color: C.text, textDecoration: "none",
-                border: `1px solid ${C.border}`,
-                transition: "border-color 0.2s",
-              }}>See How It Works</a>
+                <div style={{ width: 20, height: 20, borderRadius: "50%", background: C.accentHighlight, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span style={{ fontSize: 12.5, fontWeight: 600, color: C.accentLabel }}>
+                  India{"\u2019"}s first subscription pause infrastructure
+                </span>
+              </div>
+            </div>
+
+            <div style={f(0.15)}>
+              <h1 style={{
+                fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800,
+                lineHeight: 1.08, letterSpacing: "-0.035em",
+                color: C.text, margin: "0 0 20px",
+              }}>
+                Stop losing subscribers to a missing{" "}
+                <span style={{ color: C.accentHighlight }}>pause button</span>
+              </h1>
+            </div>
+
+            <div style={f(0.3)}>
+              <p style={{
+                fontSize: "clamp(15px, 1.4vw, 17px)", color: C.textSub,
+                lineHeight: 1.7, margin: "0 0 32px",
+              }}>
+                In India{"\u2019"}s payment stack, subscribers can only <strong style={{ color: C.text }}>pay or cancel</strong>. There{"\u2019"}s no middle ground. PausePay adds the missing pause layer {"\u2014"} keeping mandates alive while billing sleeps.
+              </p>
+            </div>
+
+            <div style={f(0.45)}>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
+                <a href="#waitlist" style={{
+                  padding: "14px 32px", borderRadius: pillRadius, fontWeight: 600, fontSize: 15,
+                  background: C.accent, color: C.accentText, textDecoration: "none",
+                  display: "inline-flex", alignItems: "center", gap: 8, boxShadow: shadow,
+                }}>
+                  Join the Waitlist {I.arrow}
+                </a>
+                <a href="#how" style={{
+                  padding: "14px 32px", borderRadius: pillRadius, fontWeight: 600, fontSize: 15,
+                  background: C.bgCard, color: C.text, textDecoration: "none",
+                  border: `1px solid ${C.border}`,
+                }}>See How It Works</a>
+              </div>
+            </div>
+
+            <div style={f(0.55)}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 8 }}>
+                <div style={{ display: "flex" }}>
+                  {[0, 1, 2, 3].map(i => (
+                    <div key={i} style={{
+                      width: 28, height: 28, borderRadius: "50%", background: ["#FFE0B2","#C8E6C9","#BBDEFB","#F8BBD0"][i],
+                      border: "2px solid #fff", marginLeft: i > 0 ? -8 : 0, display: "flex",
+                      alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: C.text,
+                    }}>{["A","M","R","S"][i]}</div>
+                  ))}
+                </div>
+                <p style={{ fontSize: 13, color: C.textSub, margin: 0 }}>
+                  <strong style={{ color: C.text }}>50+ founders</strong> already on the waitlist
+                </p>
+              </div>
             </div>
           </div>
 
-          <div style={f(0.6)}>
-            <p style={{ fontSize: 12.5, color: C.textMuted, lineHeight: 1.6, maxWidth: 400 }}>
-              Engineered for scale by the architects behind the 5,000-user Directorate of Agriculture, Assam HRMS.
-            </p>
+          {/* Right: Hero Visual - Phone mockup */}
+          <div style={f(0.4)} className="hero-visual">
+            <div style={{ position: "relative", maxWidth: 420, margin: "0 auto" }}>
+              {/* Glow behind phone */}
+              <div style={{
+                position: "absolute", inset: -40, borderRadius: 40,
+                background: "linear-gradient(135deg, rgba(26,115,232,0.12), rgba(30,142,62,0.08))",
+                filter: "blur(40px)", zIndex: 0,
+              }} />
+
+              {/* Phone Card */}
+              <div style={{
+                position: "relative", zIndex: 1,
+                background: C.bgCard, borderRadius: 24, padding: 28,
+                boxShadow: shadowXl, border: `1px solid ${C.borderLight}`,
+              }}>
+                {/* App header */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ width: 38, height: 38, borderRadius: 10, background: "linear-gradient(135deg,#FF6B6B,#EE5A6F)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 14 }}>
+                      N
+                    </div>
+                    <div>
+                      <p style={{ fontSize: 14, fontWeight: 700, color: C.text, margin: 0 }}>Netflix Premium</p>
+                      <p style={{ fontSize: 11, color: C.textMuted, margin: 0 }}>Active subscription</p>
+                    </div>
+                  </div>
+                  <div style={{ padding: "4px 10px", borderRadius: 100, background: "#E6F4EA", fontSize: 10, fontWeight: 700, color: C.accentHighlight, letterSpacing: "0.05em" }}>
+                    ACTIVE
+                  </div>
+                </div>
+
+                {/* Billing row */}
+                <div style={{
+                  padding: "14px 16px", background: C.bgAlt, borderRadius: 12, marginBottom: 16,
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                }}>
+                  <div>
+                    <p style={{ fontSize: 11, color: C.textMuted, margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>Next billing</p>
+                    <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: 0 }}>{"\u20B9"}649 on May 16</p>
+                  </div>
+                  <div style={{ color: C.textMuted }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+                  </div>
+                </div>
+
+                {/* Pause button (highlighted) */}
+                <div style={{
+                  padding: 20, borderRadius: 14,
+                  background: "linear-gradient(135deg, #E8F0FE, #F0F7FF)",
+                  border: `2px solid ${C.accent}`, marginBottom: 12,
+                  position: "relative",
+                }}>
+                  <div style={{ position: "absolute", top: -10, right: 12, padding: "3px 10px", background: C.accent, color: "#fff", borderRadius: 100, fontSize: 9, fontWeight: 800, letterSpacing: "0.08em" }}>
+                    NEW
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: 10, background: C.accent, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <PauseLogo size={18} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontSize: 14, fontWeight: 700, color: C.text, margin: "0 0 2px" }}>Pause for 30 days</p>
+                      <p style={{ fontSize: 11, color: C.textSub, margin: 0 }}>Resume automatically on Jun 15</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Cancel option (de-emphasized) */}
+                <div style={{
+                  padding: "14px 16px", borderRadius: 12,
+                  border: `1px solid ${C.borderLight}`, opacity: 0.55,
+                  display: "flex", alignItems: "center", gap: 12,
+                }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: C.bgAlt, color: C.textMuted, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {I.x}
+                  </div>
+                  <p style={{ fontSize: 13, color: C.textSub, margin: 0 }}>Cancel subscription</p>
+                </div>
+
+                {/* Powered by footer */}
+                <div style={{ marginTop: 20, paddingTop: 16, borderTop: `1px solid ${C.borderLight}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+                  <p style={{ fontSize: 10, color: C.textMuted, margin: 0 }}>Powered by</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <div style={{ width: 14, height: 14, borderRadius: 4, background: C.accent, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <PauseLogo size={8} />
+                    </div>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: C.text }}>Pause<span style={{ color: C.accentHighlight }}>Pay</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <style jsx>{`
+        @media (max-width: 900px) {
+          .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .hero-visual { order: 2; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+/* ═══ TRUST STRIP ═══ */
+function TrustStrip() {
+  return (
+    <section style={{ background: C.bgAlt, padding: "40px 0", borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+      <div style={wrap}>
+        <Reveal>
+          <p style={{ textAlign: "center", fontSize: 12, fontWeight: 700, color: C.textMuted, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 28 }}>
+            Built to integrate with India{"\u2019"}s leading payment infrastructure
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 48, alignItems: "center" }}>
+            {["Razorpay", "Cashfree", "PhonePe", "Paytm", "MSG91"].map((name, i) => (
+              <div key={i} style={{
+                fontSize: 18, fontWeight: 700, color: C.textSub, letterSpacing: "-0.02em",
+                opacity: 0.7, transition: "opacity 0.2s",
+              }}>{name}</div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -285,15 +410,15 @@ function Hero() {
 /* ═══ PROBLEM ═══ */
 function Problem() {
   return (
-    <section id="problem" style={{ background: C.bgAlt, padding: "100px 0" }}>
+    <section id="problem" style={{ background: C.bg, padding: "100px 0" }}>
       <div style={wrap}>
         <Reveal>
-          <div style={{ maxWidth: 620, marginBottom: 60 }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>The Problem</p>
-            <h2 style={{ fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em", margin: "0 0 16px" }}>
-              Your subscribers have two choices. Neither is good.
+          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 60px" }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>The Problem</p>
+            <h2 style={{ fontSize: "clamp(28px, 3.8vw, 44px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em", margin: "0 0 16px" }}>
+              Your subscribers have two choices.<br />Neither is good.
             </h2>
-            <p style={{ fontSize: 16, color: C.textSub, lineHeight: 1.7, margin: 0 }}>
+            <p style={{ fontSize: 16.5, color: C.textSub, lineHeight: 1.7, margin: 0 }}>
               When life happens {"\u2014"} a vacation, a job change, a tight month {"\u2014"} your users are forced into a binary: keep paying or cancel everything.
             </p>
           </div>
@@ -302,11 +427,11 @@ function Problem() {
         <Reveal delay={0.1}>
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "center", gap: 16,
-            flexWrap: "wrap", marginBottom: 56, padding: "40px 24px",
+            flexWrap: "wrap", marginBottom: 56, padding: "44px 24px",
             background: C.bgCard, borderRadius: 20, boxShadow: shadow,
           }}>
-            <div style={{ textAlign: "center", padding: "24px 32px", borderRadius: 16, background: "#E6F4EA", minWidth: 170 }}>
-              <div style={{ width: 52, height: 52, borderRadius: 14, background: "#CEEAD6", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", color: C.accentHighlight }}>{I.play}</div>
+            <div style={{ textAlign: "center", padding: "24px 32px", borderRadius: 16, background: "#E6F4EA", minWidth: 180 }}>
+              <div style={{ width: 56, height: 56, borderRadius: 14, background: "#CEEAD6", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", color: C.accentHighlight }}>{I.play}</div>
               <p style={{ fontWeight: 800, fontSize: 20, color: C.accentHighlight, margin: "0 0 4px" }}>ACTIVE</p>
               <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Paying every month</p>
             </div>
@@ -320,8 +445,8 @@ function Problem() {
               <span style={{ fontSize: 10, color: C.textMuted, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em" }}>No middle ground</span>
             </div>
 
-            <div style={{ textAlign: "center", padding: "24px 32px", borderRadius: 16, background: C.redBg, minWidth: 170 }}>
-              <div style={{ width: 52, height: 52, borderRadius: 14, background: "#F5C6CB", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", color: C.red }}>{I.x}</div>
+            <div style={{ textAlign: "center", padding: "24px 32px", borderRadius: 16, background: C.redBg, minWidth: 180 }}>
+              <div style={{ width: 56, height: 56, borderRadius: 14, background: "#F5C6CB", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", color: C.red }}>{I.x}</div>
               <p style={{ fontWeight: 800, fontSize: 20, color: C.red, margin: "0 0 4px" }}>CANCELLED</p>
               <p style={{ fontSize: 13, color: C.textMuted, margin: 0 }}>Lost + needs new 2FA</p>
             </div>
@@ -357,12 +482,12 @@ function Solution() {
   ];
 
   return (
-    <section id="solution" style={{ background: C.bg, padding: "100px 0" }}>
+    <section id="solution" style={{ background: C.bgAlt, padding: "100px 0" }}>
       <div style={wrap}>
         <Reveal>
-          <div style={{ textAlign: "center", maxWidth: 560, margin: "0 auto 64px" }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>The Solution</p>
-            <h2 style={{ fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em" }}>
+          <div style={{ textAlign: "center", maxWidth: 580, margin: "0 auto 60px" }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>The Solution</p>
+            <h2 style={{ fontSize: "clamp(28px, 3.8vw, 44px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em" }}>
               Three steps to zero churn
             </h2>
           </div>
@@ -389,7 +514,7 @@ function Solution() {
   );
 }
 
-/* ═══ HOW IT WORKS — ARCHITECTURE ═══ */
+/* ═══ HOW IT WORKS ═══ */
 function HowItWorks() {
   const Box = ({ emoji, label, sub, accent }) => (
     <div style={{
@@ -411,17 +536,17 @@ function HowItWorks() {
   );
 
   return (
-    <section id="how" style={{ background: C.bgAlt, padding: "100px 0" }}>
+    <section id="how" style={{ background: C.bg, padding: "100px 0" }}>
       <div style={wrap}>
         <Reveal>
-          <div style={{ textAlign: "center", maxWidth: 560, margin: "0 auto 56px" }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Architecture</p>
-            <h2 style={{ fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em" }}>How PausePay works</h2>
+          <div style={{ textAlign: "center", maxWidth: 580, margin: "0 auto 56px" }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>Architecture</p>
+            <h2 style={{ fontSize: "clamp(28px, 3.8vw, 44px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em" }}>How PausePay works</h2>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div style={{ padding: "48px 32px", borderRadius: 24, background: C.bgCard, boxShadow: shadowLg, overflowX: "auto" }}>
+          <div style={{ padding: "48px 32px", borderRadius: 24, background: C.bgAlt, boxShadow: shadow, overflowX: "auto" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0, minWidth: 640 }}>
               <Box emoji={"\uD83D\uDCF1"} label="Your App" sub="SDK / API" />
               <Arrow />
@@ -442,10 +567,10 @@ function HowItWorks() {
               <Box emoji={"\uD83C\uDFE6"} label="Bank" sub="Mandate" />
             </div>
 
-            <div style={{ textAlign: "center", marginTop: 28 }}>
+            <div style={{ textAlign: "center", marginTop: 32 }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "8px 18px", borderRadius: 100,
+                padding: "10px 20px", borderRadius: 100,
                 background: "#E6F4EA", border: "1px solid #CEEAD6",
               }}>
                 <span style={{ color: C.accentHighlight }}>{I.shield}</span>
@@ -456,7 +581,7 @@ function HowItWorks() {
         </Reveal>
 
         <Reveal delay={0.25}>
-          <p style={{ textAlign: "center", fontSize: 15, color: C.textSub, lineHeight: 1.7, maxWidth: 520, margin: "32px auto 0" }}>
+          <p style={{ textAlign: "center", fontSize: 15, color: C.textSub, lineHeight: 1.7, maxWidth: 540, margin: "32px auto 0" }}>
             The bank mandate stays <strong style={{ color: C.text }}>active</strong> the entire time. When the pause ends, PausePay instructs the gateway to resume {"\u2014"} no new 2FA needed.
           </p>
         </Reveal>
@@ -468,7 +593,7 @@ function HowItWorks() {
 /* ═══ SOCIAL PROOF ═══ */
 function SocialProof() {
   return (
-    <section style={{ background: C.bg, padding: "80px 0" }}>
+    <section style={{ background: C.bgAlt, padding: "80px 0" }}>
       <div style={wrap}>
         <Reveal>
           <div style={{
@@ -476,7 +601,7 @@ function SocialProof() {
             borderRadius: 24, background: C.bgCard, boxShadow: shadowLg,
             textAlign: "center",
           }}>
-            <div style={{ fontSize: 48, color: C.borderLight, marginBottom: 16 }}>{"\u201C"}</div>
+            <div style={{ fontSize: 48, color: C.borderLight, marginBottom: 16, lineHeight: 1 }}>{"\u201C"}</div>
             <p style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: C.text, letterSpacing: "-0.03em", lineHeight: 1.15, margin: "0 0 12px" }}>
               <span style={{ color: C.accentHighlight }}>12%</span> churn rate
             </p>
@@ -497,12 +622,12 @@ function SocialProof() {
 /* ═══ PRICING ═══ */
 function Pricing() {
   return (
-    <section id="pricing" style={{ background: C.bgAlt, padding: "100px 0" }}>
+    <section id="pricing" style={{ background: C.bg, padding: "100px 0" }}>
       <div style={wrap}>
         <Reveal>
-          <div style={{ textAlign: "center", maxWidth: 480, margin: "0 auto 64px" }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Pricing</p>
-            <h2 style={{ fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em", margin: "0 0 12px" }}>
+          <div style={{ textAlign: "center", maxWidth: 500, margin: "0 auto 64px" }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>Pricing</p>
+            <h2 style={{ fontSize: "clamp(28px, 3.8vw, 44px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em", margin: "0 0 12px" }}>
               Simple, transparent pricing
             </h2>
             <p style={{ fontSize: 16, color: C.textSub, margin: 0 }}>14-day free trial. No credit card required.</p>
@@ -548,7 +673,6 @@ function Pricing() {
                   background: p.pop ? C.accent : C.bgAlt,
                   color: p.pop ? C.accentText : C.text,
                   border: p.pop ? "none" : `1px solid ${C.border}`,
-                  transition: "background 0.15s",
                 }}>{p.cta}</a>
               </div>
             </Reveal>
@@ -562,15 +686,15 @@ function Pricing() {
 /* ═══ WAITLIST ═══ */
 function Waitlist() {
   return (
-    <section id="waitlist" style={{ background: C.bg, padding: "100px 0" }}>
-      <div style={{ ...wrap, maxWidth: 680 }}>
+    <section id="waitlist" style={{ background: C.bgAlt, padding: "100px 0" }}>
+      <div style={{ ...wrap, maxWidth: 720 }}>
         <Reveal>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Early Access</p>
-            <h2 style={{ fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em", margin: "0 0 12px" }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: C.accentLabel, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>Early Access</p>
+            <h2 style={{ fontSize: "clamp(28px, 3.8vw, 44px)", fontWeight: 800, color: C.text, lineHeight: 1.15, letterSpacing: "-0.03em", margin: "0 0 12px" }}>
               Be first in line
             </h2>
-            <p style={{ fontSize: 16, color: C.textSub, lineHeight: 1.7, maxWidth: 440, margin: "0 auto" }}>
+            <p style={{ fontSize: 16, color: C.textSub, lineHeight: 1.7, maxWidth: 460, margin: "0 auto" }}>
               Join the waitlist for early access and founding-member pricing.
             </p>
           </div>
@@ -600,15 +724,15 @@ function Waitlist() {
 function Footer() {
   const fLink = { color: C.textSub, fontSize: 13.5, textDecoration: "none" };
   return (
-    <footer style={{ background: C.bgAlt, borderTop: `1px solid ${C.border}`, padding: "56px 0 40px" }}>
+    <footer style={{ background: C.bg, borderTop: `1px solid ${C.border}`, padding: "56px 0 40px" }}>
       <div style={wrap}>
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 48 }}>
-          <div style={{ maxWidth: 260 }}>
+          <div style={{ maxWidth: 280 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 14 }}>
-              <div style={{ width: 28, height: 28, borderRadius: 7, background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", color: C.accentText }}>
-                <PauseLogo size={12} />
+              <div style={{ width: 30, height: 30, borderRadius: 8, background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", color: C.accentText }}>
+                <PauseLogo size={13} />
               </div>
-              <span style={{ fontWeight: 700, fontSize: 16, color: C.text }}>Pause<span style={{ color: C.accentHighlight }}>Pay</span></span>
+              <span style={{ fontWeight: 700, fontSize: 17, color: C.text }}>Pause<span style={{ color: C.accentHighlight }}>Pay</span></span>
             </div>
             <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.6, margin: 0 }}>
               {"India\u2019s first subscription pause infrastructure. Stop churn before it starts."}
@@ -655,10 +779,10 @@ export default function Home() {
   return (
     <div style={{
       background: C.bg, color: C.text,
-      fontFamily: "'Google Sans', 'Product Sans', 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
     }}>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #FFFFFF; -webkit-font-smoothing: antialiased; }
@@ -676,6 +800,7 @@ export default function Home() {
       <TopBar />
       <Nav />
       <Hero />
+      <TrustStrip />
       <Problem />
       <Solution />
       <HowItWorks />
