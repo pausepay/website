@@ -279,88 +279,104 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Hero Visual - Phone mockup */}
+          {/* Right: Hero Visual - 3 Category Cards */}
           <div style={f(0.4)} className="hero-visual">
-            <div style={{ position: "relative", maxWidth: 420, margin: "0 auto" }}>
-              {/* Glow behind phone */}
+            <div style={{ position: "relative", maxWidth: 440, margin: "0 auto" }}>
+              {/* Glow behind cards */}
               <div style={{
                 position: "absolute", inset: -40, borderRadius: 40,
                 background: "linear-gradient(135deg, rgba(26,115,232,0.12), rgba(30,142,62,0.08))",
                 filter: "blur(40px)", zIndex: 0,
               }} />
 
-              {/* Phone Card */}
-              <div style={{
-                position: "relative", zIndex: 1,
-                background: C.bgCard, borderRadius: 24, padding: 28,
-                boxShadow: shadowXl, border: `1px solid ${C.borderLight}`,
-              }}>
-                {/* App header */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{ width: 38, height: 38, borderRadius: 10, background: "linear-gradient(135deg,#FF6B6B,#EE5A6F)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 14 }}>
-                      N
-                    </div>
-                    <div>
-                      <p style={{ fontSize: 14, fontWeight: 700, color: C.text, margin: 0 }}>Netflix Premium</p>
-                      <p style={{ fontSize: 11, color: C.textMuted, margin: 0 }}>Active subscription</p>
-                    </div>
-                  </div>
-                  <div style={{ padding: "4px 10px", borderRadius: 100, background: "#E6F4EA", fontSize: 10, fontWeight: 700, color: C.accentHighlight, letterSpacing: "0.05em" }}>
-                    ACTIVE
-                  </div>
-                </div>
+              <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: 14 }}>
+                {/* Card 1: Streaming */}
+                {[
+                  {
+                    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
+                    iconBg: "linear-gradient(135deg, #E040FB, #7C4DFF)",
+                    name: "Streaming Service",
+                    plan: "Premium Plan",
+                    price: "\u20B9649/mo",
+                    status: "Paused",
+                    statusColor: C.accent,
+                    statusBg: C.accentBg,
+                    detail: "Resumes Jun 15",
+                    highlight: true,
+                  },
+                  {
+                    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>,
+                    iconBg: "linear-gradient(135deg, #FF6B6B, #FF8A65)",
+                    name: "Fitness App",
+                    plan: "Annual Plan",
+                    price: "\u20B9499/mo",
+                    status: "Active",
+                    statusColor: C.accentHighlight,
+                    statusBg: "#E6F4EA",
+                    detail: "Next billing May 20",
+                    highlight: false,
+                  },
+                  {
+                    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
+                    iconBg: "linear-gradient(135deg, #1A73E8, #4FC3F7)",
+                    name: "Software Tool",
+                    plan: "Team Plan",
+                    price: "\u20B92,499/mo",
+                    status: "Paused",
+                    statusColor: C.accent,
+                    statusBg: C.accentBg,
+                    detail: "Resumes Jul 1",
+                    highlight: false,
+                  },
+                ].map((card, idx) => (
+                  <div key={idx} style={{
+                    background: C.bgCard, borderRadius: 18, padding: "20px 22px",
+                    boxShadow: card.highlight ? shadowXl : shadow,
+                    border: card.highlight ? `2px solid ${C.accent}` : `1px solid ${C.borderLight}`,
+                    display: "flex", alignItems: "center", gap: 14,
+                    position: "relative",
+                    transform: card.highlight ? "scale(1.03)" : "none",
+                    transition: "transform 0.2s ease",
+                  }}>
+                    {/* Icon */}
+                    <div style={{
+                      width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                      background: card.iconBg,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>{card.icon}</div>
 
-                {/* Billing row */}
-                <div style={{
-                  padding: "14px 16px", background: C.bgAlt, borderRadius: 12, marginBottom: 16,
-                  display: "flex", justifyContent: "space-between", alignItems: "center",
-                }}>
-                  <div>
-                    <p style={{ fontSize: 11, color: C.textMuted, margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>Next billing</p>
-                    <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: 0 }}>{"\u20B9"}649 on May 16</p>
-                  </div>
-                  <div style={{ color: C.textMuted }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
-                  </div>
-                </div>
-
-                {/* Pause button (highlighted) */}
-                <div style={{
-                  padding: 20, borderRadius: 14,
-                  background: "linear-gradient(135deg, #E8F0FE, #F0F7FF)",
-                  border: `2px solid ${C.accent}`, marginBottom: 12,
-                  position: "relative",
-                }}>
-                  <div style={{ position: "absolute", top: -10, right: 12, padding: "3px 10px", background: C.accent, color: "#fff", borderRadius: 100, fontSize: 9, fontWeight: 800, letterSpacing: "0.08em" }}>
-                    NEW
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ width: 40, height: 40, borderRadius: 10, background: C.accent, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <PauseLogo size={18} />
+                    {/* Info */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                        <p style={{ fontSize: 14, fontWeight: 700, color: C.text, margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{card.name}</p>
+                        <div style={{ padding: "3px 10px", borderRadius: 100, background: card.statusBg, fontSize: 10, fontWeight: 700, color: card.statusColor, letterSpacing: "0.05em", flexShrink: 0 }}>
+                          {card.status.toUpperCase()}
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 4 }}>
+                        <p style={{ fontSize: 12, color: C.textMuted, margin: 0 }}>{card.plan} {"\u00B7"} {card.price}</p>
+                        <p style={{ fontSize: 11, color: card.status === "Paused" ? C.accent : C.textMuted, fontWeight: card.status === "Paused" ? 600 : 400, margin: 0 }}>{card.detail}</p>
+                      </div>
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontSize: 14, fontWeight: 700, color: C.text, margin: "0 0 2px" }}>Pause for 30 days</p>
-                      <p style={{ fontSize: 11, color: C.textSub, margin: 0 }}>Resume automatically on Jun 15</p>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Cancel option (de-emphasized) */}
-                <div style={{
-                  padding: "14px 16px", borderRadius: 12,
-                  border: `1px solid ${C.borderLight}`, opacity: 0.55,
-                  display: "flex", alignItems: "center", gap: 12,
-                }}>
-                  <div style={{ width: 32, height: 32, borderRadius: 8, background: C.bgAlt, color: C.textMuted, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    {I.x}
+                    {/* Pause icon for highlighted card */}
+                    {card.highlight && (
+                      <div style={{
+                        position: "absolute", top: -8, right: -8,
+                        width: 28, height: 28, borderRadius: 8,
+                        background: C.accent, color: "#fff",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        boxShadow: shadow,
+                      }}>
+                        <PauseLogo size={12} />
+                      </div>
+                    )}
                   </div>
-                  <p style={{ fontSize: 13, color: C.textSub, margin: 0 }}>Cancel subscription</p>
-                </div>
+                ))}
 
                 {/* Powered by footer */}
-                <div style={{ marginTop: 20, paddingTop: 16, borderTop: `1px solid ${C.borderLight}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-                  <p style={{ fontSize: 10, color: C.textMuted, margin: 0 }}>Powered by</p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, paddingTop: 8 }}>
+                  <p style={{ fontSize: 10, color: C.textMuted, margin: 0 }}>Managed by</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                     <div style={{ width: 14, height: 14, borderRadius: 4, background: C.accent, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <PauseLogo size={8} />
